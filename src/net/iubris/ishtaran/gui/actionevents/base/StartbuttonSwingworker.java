@@ -12,14 +12,23 @@ import net.iubris.ishtaran.utils.printer.Printer;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
 
-public class StartbuttonSwingWorker extends SwingWorker<Void, Void> {
+public class StartbuttonSwingworker extends SwingWorker<Void, Void> {
 	
+//	@Inject
 	private final Printer printer;
 	private final TaskWrapper taskWrapper;
-	private final ButtonCommandActionEvent buttonCommandActionEvent;
+	private final AbstractButtonCommandActionEvent buttonCommandActionEvent;
+
 	
 	@AssistedInject
-	public StartbuttonSwingWorker(@Assisted TaskWrapper taskWrapper, @Assisted ButtonCommandActionEvent buttonCommandActionEvent, Printer printer) {
+//	@Inject
+	public StartbuttonSwingworker(
+			@Assisted
+			TaskWrapper taskWrapper, 
+			@Assisted
+			AbstractButtonCommandActionEvent buttonCommandActionEvent
+			, Printer printer
+			) {
 		this.taskWrapper = taskWrapper;
 		this.buttonCommandActionEvent = buttonCommandActionEvent;
 		this.printer = printer;
@@ -52,6 +61,7 @@ public class StartbuttonSwingWorker extends SwingWorker<Void, Void> {
 	}
 	
 	public static interface Factory {
-		public StartbuttonSwingWorker create(TaskWrapper taskWrapper, ButtonCommandActionEvent buttonCommandActionEvent);
+		public StartbuttonSwingworker create(TaskWrapper taskWrapper, 
+				AbstractButtonCommandActionEvent buttonCommandActionEvent);
 	}
 }

@@ -10,13 +10,13 @@ import javax.inject.Singleton;
 import javax.swing.JButton;
 
 import net.iubris.ishtaran.gui.actionevents.base.ActionCommand;
-import net.iubris.ishtaran.gui.actionevents.base.ButtonCommandActionEvent;
+import net.iubris.ishtaran.gui.actionevents.base.AbstractButtonCommandActionEvent;
 
 public class CommandActionEventsHandler {
 	
 	// flyweight - gof uses static field way
 	@Singleton
-	private /*static*/ final Map<JButton,ActionCommand> actioncommandMap = new LinkedHashMap<>();
+	private final Map<JButton,ActionCommand> actioncommandMap = new LinkedHashMap<>();
 	
 	
 	private final ActionListener clickListener = new ActionListener() {
@@ -30,13 +30,13 @@ public class CommandActionEventsHandler {
 		}
 	};
 	
-	public CommandActionEventsHandler(ButtonCommandActionEvent... commandActionEvents) {
-		for (ButtonCommandActionEvent commandActionEvent: commandActionEvents) {
+	public CommandActionEventsHandler(AbstractButtonCommandActionEvent... commandActionEvents) {
+		for (AbstractButtonCommandActionEvent commandActionEvent: commandActionEvents) {
 			bindButtonToCommand(commandActionEvent);
 		}
 	}
 	
-	private void bindButtonToCommand(ButtonCommandActionEvent commandActionEvent) {
+	private void bindButtonToCommand(AbstractButtonCommandActionEvent commandActionEvent) {
 		JButton button = commandActionEvent.getButton();
 		button.addActionListener(clickListener);
 		actioncommandMap.put(button, commandActionEvent);

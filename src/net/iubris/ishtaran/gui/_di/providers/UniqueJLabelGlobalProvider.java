@@ -6,20 +6,9 @@ import javax.swing.JLabel;
 
 @Singleton
 public class UniqueJLabelGlobalProvider extends AbstractUniqueJLabelProvider {
-	
-//	private final JLabel jLabel;
 
 	@Inject
 	public UniqueJLabelGlobalProvider(JLabel jLabel) {
-		/*jLabel.setHorizontalTextPosition(JLabel.CENTER);
-		jLabel.setHorizontalAlignment(JLabel.CENTER);
-		jLabel.setText("");
-		this.jLabel = jLabel;*/
 		super(jLabel);
 	}
-
-//	@Override
-//	public JLabel get() {
-//		return jLabel;
-//	}
 }

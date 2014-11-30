@@ -21,5 +21,4 @@ public class GUIButtonsProvider implements Provider<Set<JButton>> {
 	public Set<JButton> get() {
 		return buttons;
 	}
-
 }

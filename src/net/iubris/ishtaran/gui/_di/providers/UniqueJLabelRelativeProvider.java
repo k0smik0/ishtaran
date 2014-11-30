@@ -7,15 +7,9 @@ import javax.swing.JLabel;
 @Singleton
 public class UniqueJLabelRelativeProvider extends AbstractUniqueJLabelProvider {
 	
-//	private final JLabel jLabel;
-
 	@Inject
 	public UniqueJLabelRelativeProvider(JLabel jLabel) {
 		super(jLabel);
 	}
 
-//	@Override
-//	public JLabel get() {
-//		return jLabel;
-//	}
 }

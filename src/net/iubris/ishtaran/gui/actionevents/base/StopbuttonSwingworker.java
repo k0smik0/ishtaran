@@ -2,19 +2,26 @@ package net.iubris.ishtaran.gui.actionevents.base;
 
 import javax.swing.SwingWorker;
 
-import com.google.inject.assistedinject.Assisted;
-import com.google.inject.assistedinject.AssistedInject;
-
 import net.iubris.ishtaran.task.taskwrapper.TaskWrapper;
 import net.iubris.ishtaran.utils.printer.Printer;
 
-public class StopbuttonSwingWorker extends SwingWorker<Void, Void> {
+import com.google.inject.assistedinject.Assisted;
+import com.google.inject.assistedinject.AssistedInject;
+
+public class StopbuttonSwingworker extends SwingWorker<Void, Void> {
 	
 	private final TaskWrapper taskWrapper;
+	
+//	@Inject
 	private final Printer printer;
 	
 	@AssistedInject
-	public StopbuttonSwingWorker(@Assisted TaskWrapper taskWrapper, Printer printer) {
+//	@Inject
+	public StopbuttonSwingworker(
+			@Assisted 
+			TaskWrapper taskWrapper
+			, Printer printer
+			) {
 		this.taskWrapper = taskWrapper;
 		this.printer = printer;
 	}
@@ -29,6 +36,6 @@ public class StopbuttonSwingWorker extends SwingWorker<Void, Void> {
 	}
 	
 	public static interface Factory {
-		public StopbuttonSwingWorker create(TaskWrapper taskWrapper);
+		public StopbuttonSwingworker create(TaskWrapper taskWrapper);
 	}
 }

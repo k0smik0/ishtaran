@@ -1,4 +1,4 @@
-package net.iubris.ishtaran.gui;
+package net.iubris.ishtaran.gui.frame;
 
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -20,11 +20,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import net.iubris.ishtaran.gui._di.annotations.GUIButtons;
-import net.iubris.ishtaran.gui._di.annotations.UniqueJLabelGlobal;
-import net.iubris.ishtaran.gui._di.annotations.UniqueJLabelRelative;
+import net.iubris.ishtaran.gui._di.annotations.JLabelGlobal;
+import net.iubris.ishtaran.gui._di.annotations.JLabelRelative;
 import net.iubris.ishtaran.gui._di.annotations.ProgressBarGlobal;
 import net.iubris.ishtaran.gui._di.annotations.ProgressBarRelative;
-import net.iubris.ishtaran.gui._di.annotations.UniqueJTextArea;
+import net.iubris.ishtaran.gui._di.annotations.JTextAreaGlobal;
 
 @Singleton
 public class GUIFrame extends JFrame {
@@ -38,10 +38,10 @@ public class GUIFrame extends JFrame {
 	@Inject
 	public GUIFrame(
 			@GUIButtons Set<JButton> buttons,
-			@UniqueJTextArea JTextArea jTextArea,
-			@UniqueJLabelRelative JLabel jLabelRelative,
+			@JTextAreaGlobal JTextArea jTextArea,
+			@JLabelRelative JLabel jLabelRelative,
 			@ProgressBarRelative JProgressBar jProgressBarRelative,
-			@UniqueJLabelGlobal JLabel jLabelGlobal,
+			@JLabelGlobal JLabel jLabelGlobal,
 			@ProgressBarGlobal JProgressBar jProgressBarGlobal
 //			,BerkeleyDBHelperManager berkeleyDBHelperManager
 			) {

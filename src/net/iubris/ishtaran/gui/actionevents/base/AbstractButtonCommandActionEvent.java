@@ -5,13 +5,18 @@ import java.util.Collection;
 import java.util.Random;
 import java.util.Set;
 
+import javax.inject.Inject;
 import javax.swing.JButton;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
+import net.iubris.ishtaran.gui._di.guice.modules.components.ButtonSwingworkerModule;
 import net.iubris.ishtaran.task.phasable.CallState;
 import net.iubris.ishtaran.task.taskwrapper.TaskWrapper;
 import net.iubris.ishtaran.utils.printer.Printer;
 
-public abstract class ButtonCommandActionEvent extends ActionEvent implements ActionCommand {
+public abstract class AbstractButtonCommandActionEvent extends ActionEvent implements ActionCommand {
 	
 	private static final long serialVersionUID = 7885252769771315893L;
 
@@ -22,28 +27,24 @@ public abstract class ButtonCommandActionEvent extends ActionEvent implements Ac
 	private boolean wasPressed = false;
 	
 	private final TaskWrapper taskWrapper;
-	private final StopbuttonSwingWorker stopbuttonSwingWorker;
-	private final StartbuttonSwingWorker startbuttonSwingWorker;
+	private final StartbuttonSwingworker startbuttonSwingWorker;
+	private final StopbuttonSwingworker stopbuttonSwingWorker;
 	
-	//no
-//	protected final Printer printer;
+	
+	protected final Printer printer;
 	
 	protected CallState callState;
 	
 	
-	public ButtonCommandActionEvent(String buttonTextPrefix, TaskWrapper taskWrapper, 
-			StartbuttonSwingWorker.Factory startbuttonSwingworkerFactory,
-			StopbuttonSwingWorker.Factory stopbuttonSwingworkerFactory,
-			Printer printer) {
+	@Inject
+	public AbstractButtonCommandActionEvent(String buttonTextPrefix, TaskWrapper taskWrapper) {
 		super(new JButton(), new Random().nextInt(), "");
-		this.startbuttonSwingWorker = 
-//				new StartbuttonSwingworker(StartbuttonSwingworker.Factory. taskWrapper, this, printer);
-				startbuttonSwingworkerFactory.create(taskWrapper, this);
-		this.stopbuttonSwingWorker = 
-//				new StopbuttonSwingWorker(taskWrapper, printer);
-				stopbuttonSwingworkerFactory.create(taskWrapper);
-			
-//		this.printer = printer;
+
+		Injector buttonsInjector = Guice.createInjector( new ButtonSwingworkerModule() );
+		this.startbuttonSwingWorker = buttonsInjector.getInstance(StartbuttonSwingworker.Factory.class).create(taskWrapper, this);
+		this.stopbuttonSwingWorker = buttonsInjector.getInstance(StopbuttonSwingworker.Factory.class).create(taskWrapper);
+		this.printer = buttonsInjector.getInstance(Printer.class);
+
 		this.ownButton = (JButton)super.source;
 		this.buttonTextPrefix = buttonTextPrefix;
 		this.ownButton.setText(buttonTextPrefix);
@@ -56,14 +57,17 @@ public abstract class ButtonCommandActionEvent extends ActionEvent implements Ac
 	
 	@Override
 	public void execute() throws Exception {
+		// it was working
 		if (wasPressed) {
 			ownButton.setText(buttonTextPrefix);
 			wasPressed = false;
 
-			// here stop some action and commit
+			// here stop some action
 			enableAllButtons();
 			actWhenPressStop();			
-		} else if (!wasPressed) {
+		}
+		// it was stopped
+		else if (!wasPressed) {
 			ownButton.setText(buttonTextPrefix+": running - press again to stop");
 			wasPressed = true;
 			

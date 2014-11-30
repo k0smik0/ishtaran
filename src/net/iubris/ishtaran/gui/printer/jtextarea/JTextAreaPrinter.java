@@ -4,7 +4,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.swing.JTextArea;
 
-import net.iubris.ishtaran.gui._di.annotations.UniqueJTextArea;
+import net.iubris.ishtaran.gui._di.annotations.JTextAreaGlobal;
 import net.iubris.ishtaran.utils.printer.Printer;
 
 @Singleton
@@ -15,7 +15,7 @@ public class JTextAreaPrinter implements Printer {
 //	Stack<String> queue = new Stack<>();
 
 	@Inject
-	public JTextAreaPrinter(@UniqueJTextArea JTextArea jTextArea) {
+	public JTextAreaPrinter(@JTextAreaGlobal JTextArea jTextArea) {
 		this.jTextArea = jTextArea;
 		this.jTextArea.setAutoscrolls(true);
 	}

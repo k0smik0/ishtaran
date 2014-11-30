@@ -26,6 +26,9 @@ public abstract class AbstractTaskWrapper<R> implements TaskWrapper {
 	
 	private ExecutorService executorService = Executors.newFixedThreadPool(TaskWrapperThreads);
 	
+//	private Future<CallState> submitted;
+//	private CompletableFuture<CallState> s;
+	
 	public AbstractTaskWrapper(Phasable<R> callable/*, Printer printer*/) {
 		this.callable = callable;
 //		this.printer = printer;
@@ -43,10 +46,25 @@ public abstract class AbstractTaskWrapper<R> implements TaskWrapper {
 	@Override
 	public Future<CallState> start() throws InterruptedException, ExecutionException  {
 		checkExecutorService();
-		Future<CallState> submitted = executorService.submit(callable);
+////		CompletableFuture<CallState> 
+//		s = CompletableFuture.supplyAsync( ()->
+//		{	return doCall();	}, executorService);
+//		return s;
+		
+		Future<CallState> submitted
+		= executorService.submit(callable);
 //System.out.println(this.getClass().getSimpleName()+": submitted = "+submitted);
 		return submitted;
+		
 	}
+	
+	/*private CallState doCall() {
+		try {
+			return callable.call();
+		} catch (Exception e) {
+			return callable.getCallState();
+		}
+	}*/
 	
 	@Override
 	public void postStart() throws Exception {
@@ -56,6 +74,7 @@ public abstract class AbstractTaskWrapper<R> implements TaskWrapper {
 	@Override
 	public CallState stop() {
 		callable.stop();
+//		submitted.cancel(true);
 		executorService.shutdown();
 		/*try {
 			executorService.awaitTermination(500, TimeUnit.MILLISECONDS);

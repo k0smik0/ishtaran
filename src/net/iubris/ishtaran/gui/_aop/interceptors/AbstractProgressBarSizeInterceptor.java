@@ -14,12 +14,9 @@ public abstract class AbstractProgressBarSizeInterceptor implements MethodInterc
 	}
 
 	@Override
-	public Object invoke(MethodInvocation invocation) throws Throwable {
-		
-      Object result = invocation.proceed();
-      
-      jProgressBar.setMaximum((int) result);
-      
+	public Object invoke(MethodInvocation invocation) throws Throwable {	
+      Object result = invocation.proceed();      
+      jProgressBar.setMaximum((int) result);      
       return result;
 	}
 

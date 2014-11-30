@@ -10,4 +10,4 @@ import javax.inject.Qualifier;
 @Qualifier
 @Target(value={ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD, ElementType.CONSTRUCTOR}) 
 @Retention(value=RetentionPolicy.RUNTIME)
-public @interface UniqueJLabelGlobal {}
+public @interface JLabelRelative {}

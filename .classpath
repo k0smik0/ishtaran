@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="net/ishtaran/gui/main/_di/guice/module/GuiMainModule.java|net/ishtaran/task/statable/PhaseStateMemento.java|net/iubris/ishtaran/gui/_di/providers/RXTextUtilities.java|net/iubris/ishtaran/gui/main/_di/guice/module/GuiMainModule.java" kind="src" path="src"/>
+	<classpathentry excluding="net/ishtaran/gui/main/_di/guice/module/GuiMainModule.java|net/ishtaran/task/statable/PhaseStateMemento.java|net/iubris/ishtaran/gui/_di/providers/RXTextUtilities.java|net/iubris/ishtaran/gui/main/_di/guice/module/GuiMainModule.java|net/iubris/ishtaran/gui/_aop/interceptors/AbstractProgressBarSizeInterceptor.java|net/iubris/ishtaran/gui/_aop/interceptors/ProgressBarGlobalSizeInterceptor.java|net/iubris/ishtaran/gui/_aop/interceptors/ProgressBarRelativeSizeInterceptor.java|net/iubris/ishtaran/gui/_di/guice/modules/components/InterceptorModule.java|net/iubris/ishtaran/gui/_di/guice/modules/IshtaranModuleTest.java|net/iubris/ishtaran/gui/frame/GuiFrameTest.java" kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="libs/guice/aopalliance.jar"/>
 	<classpathentry kind="lib" path="libs/guice/javax.inject.jar"/>
-	<classpathentry kind="lib" path="libs/guice/guice-3.0.jar"/>
+	<classpathentry kind="lib" path="libs/guice/guice-3.0-no_aop.jar"/>
 	<classpathentry kind="lib" path="libs/guice/guice-assistedinject-3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
